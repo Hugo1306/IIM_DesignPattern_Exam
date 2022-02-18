@@ -4,12 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class Health : MonoBehaviour, IHealth
 {
     // Champs
     [SerializeField] int _startHealth;
     [SerializeField] int _maxHealth;
+    [SerializeField] UnityEvent<int> _onDamage;
     [SerializeField] UnityEvent _onDeath;
 
     // Propriétés
@@ -19,7 +23,7 @@ public class Health : MonoBehaviour, IHealth
 
     // Events
     public event UnityAction OnSpawn;
-    public event UnityAction<int> OnDamage;
+    public event UnityAction<int> OnDamage { add => _onDamage.AddListener(value); remove => _onDamage.RemoveListener(value); }
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
 
     // Methods
@@ -38,7 +42,7 @@ public class Health : MonoBehaviour, IHealth
         var tmp = CurrentHealth;
         CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         var delta = CurrentHealth - tmp;
-        OnDamage?.Invoke(delta);
+        _onDamage?.Invoke(delta);
 
         if(CurrentHealth <= 0)
         {
@@ -86,6 +90,18 @@ public class Health : MonoBehaviour, IHealth
         yield break;
     }
 
+    public void ReloadThisScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void UpdateHealthBar()
+    {
+        Canvas canvas = FindObjectOfType<Canvas>();
+        Slider healthBar = canvas.gameObject.GetComponentInChildren<Slider>();
+        healthBar.value = (float)CurrentHealth / MaxHealth;
+    }
 
 
 

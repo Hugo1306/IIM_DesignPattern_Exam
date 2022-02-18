@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7102965514168495217}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -868,6 +868,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealth: 10
   _maxHealth: 10
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls: []
   _onDeath:
     m_PersistentCalls:
       m_Calls: []

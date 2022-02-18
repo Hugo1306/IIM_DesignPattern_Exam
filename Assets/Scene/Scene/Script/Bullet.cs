@@ -36,8 +36,12 @@ public class Bullet : MonoBehaviour
     {
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
-        collision.GetComponent<IHealth>()?.TakeDamage(Power);
-        Destroy(gameObject);
+        if (collision.tag == "HitBox")
+        {
+            collision.GetComponent<IHealth>()?.TakeDamage(Power);
+            Destroy(gameObject);
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
