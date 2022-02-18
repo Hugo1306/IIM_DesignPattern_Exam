@@ -7,7 +7,5 @@ public interface ILootable
 {
     GameObject MainObj { get; }
 
-    //event UnityAction OnCollision;
-
     void TakeObject();
 }

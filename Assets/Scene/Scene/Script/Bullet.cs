@@ -48,6 +48,8 @@ public class Bullet : MonoBehaviour
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
         collision.collider.GetComponent<IHealth>()?.TakeDamage(Power);
+        collision.collider.GetComponent<IStates>()?.ChangeState();
+
         Destroy(gameObject);
     }
 

@@ -153,9 +153,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ed3439ca4dc2748a9934d53a24649a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onToggleOn:
+  sprite: {fileID: 772237969555204843}
+  _onToggleOn: {r: 0.33893892, g: 0.6117647, b: 0.27058825, a: 0}
+  _onToggleOff: {r: 0.27058825, g: 0.33333334, b: 0.6117647, a: 0}
+  _onStateChange:
     m_PersistentCalls:
-      m_Calls: []
-  _onToggleOff:
-    m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772237969755308588}
+        m_TargetAssemblyTypeName: MyToggle, MyGame
+        m_MethodName: ChangeState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _gate: {fileID: 0}

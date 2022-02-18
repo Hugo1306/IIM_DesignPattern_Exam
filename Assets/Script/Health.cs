@@ -126,7 +126,6 @@ public class Health : MonoBehaviour, IHealth
     public void Shield()
     {
         IsShielded = !IsShielded;
-        Debug.Log("Shield is : " + IsShielded);
     }
 
 

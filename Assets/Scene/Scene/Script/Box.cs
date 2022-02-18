@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour, ITouchable
 {
-    public void Touch(int power)
+    public void Touch()
     {
         Destroy(gameObject);
     }
