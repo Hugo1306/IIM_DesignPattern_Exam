@@ -103,6 +103,19 @@ public class Health : MonoBehaviour, IHealth
         healthBar.value = (float)CurrentHealth / MaxHealth;
     }
 
+    public void Heal(int amount)
+    {
+        CurrentHealth += amount;
+
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+
+        UpdateHealthBar();
+
+    }
+
 
 
 
