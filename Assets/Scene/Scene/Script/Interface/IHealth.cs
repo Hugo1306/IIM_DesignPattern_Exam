@@ -9,6 +9,7 @@ public interface IHealth
     int CurrentHealth { get; }
     int MaxHealth { get; }
     bool IsDead { get; }
+    bool IsShielded { get; }
 
     event UnityAction OnSpawn;
     event UnityAction<int> OnDamage;

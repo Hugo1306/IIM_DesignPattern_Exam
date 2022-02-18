@@ -13,6 +13,7 @@ public class Health : MonoBehaviour, IHealth
     // Champs
     [SerializeField] int _startHealth;
     [SerializeField] int _maxHealth;
+    [SerializeField] bool _shielded = false;
     [SerializeField] UnityEvent<int> _onDamage;
     [SerializeField] UnityEvent _onDeath;
 
@@ -20,6 +21,7 @@ public class Health : MonoBehaviour, IHealth
     public int CurrentHealth { get; private set; }
     public int MaxHealth => _maxHealth;
     public bool IsDead => CurrentHealth <= 0;
+    public bool IsShielded { get; private set; }
 
     // Events
     public event UnityAction OnSpawn;
@@ -32,6 +34,7 @@ public class Health : MonoBehaviour, IHealth
     void Init()
     {
         CurrentHealth = _startHealth;
+        IsShielded = _shielded;
         OnSpawn?.Invoke();
     }
 
@@ -39,15 +42,19 @@ public class Health : MonoBehaviour, IHealth
     {
         if (amount < 0) throw new ArgumentException($"Argument amount {nameof(amount)} is negativ");
 
-        var tmp = CurrentHealth;
-        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
-        var delta = CurrentHealth - tmp;
-        _onDamage?.Invoke(delta);
-
-        if(CurrentHealth <= 0)
+        if (!IsShielded)
         {
-            _onDeath?.Invoke();
+            var tmp = CurrentHealth;
+            CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+            var delta = CurrentHealth - tmp;
+            _onDamage?.Invoke(delta);
+
+            if (CurrentHealth <= 0)
+            {
+                _onDeath?.Invoke();
+            }
         }
+        
 
     }
 
@@ -114,6 +121,12 @@ public class Health : MonoBehaviour, IHealth
 
         UpdateHealthBar();
 
+    }
+
+    public void Shield()
+    {
+        IsShielded = !IsShielded;
+        Debug.Log("Shield is : " + IsShielded);
     }
 
 

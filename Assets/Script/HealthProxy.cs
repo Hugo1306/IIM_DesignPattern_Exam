@@ -14,6 +14,8 @@ public class HealthProxy : MonoBehaviour, IHealth
 
     public bool IsDead => _health.IsDead;
 
+    public bool IsShielded => _health.IsShielded;
+
     public event UnityAction OnSpawn
     {
         add => _health.OnSpawn += value;
