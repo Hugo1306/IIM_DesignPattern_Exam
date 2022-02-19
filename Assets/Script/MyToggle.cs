@@ -26,7 +26,6 @@ public class MyToggle : MonoBehaviour, ITouchable, IStates
 
     public void ChangeState()
     {
-        Touch();
         _gate.CheckToggles();
     }
 }

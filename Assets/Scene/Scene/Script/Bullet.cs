@@ -41,10 +41,8 @@ public class Bullet : MonoBehaviour
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
         collision.GetComponent<IHealth>()?.TakeDamage(Power);
+        collision.GetComponent<ITouchable>()?.Touch();
         collision.GetComponent<IStates>()?.ChangeState();
-
-        if (collision.GetComponent<IStates>() == null)
-            collision.GetComponent<ITouchable>()?.Touch();
 
         if (collision.GetComponent<ObjectTrigger>() == null && collision.GetComponent<Potion>() == null)
         {
