@@ -9,10 +9,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] float _speed;
     [SerializeField] float _collisionCooldown = 0.5f;
+    [SerializeField] FXInstance _fxPrefab;
+    [SerializeField] UnityEvent _instanceFXPrefabEvent;
 
     public Vector3 Direction { get; private set; }
     public int Power { get; private set; }
     float LaunchTime { get; set; }
+
+    public event UnityAction InstanceFXPrefabAction { add => _instanceFXPrefabEvent.AddListener(value); remove => _instanceFXPrefabEvent.RemoveListener(value); }
 
     internal Bullet Init(Vector3 vector3, int power)
     {
@@ -43,7 +47,10 @@ public class Bullet : MonoBehaviour
             collision.GetComponent<ITouchable>()?.Touch();
 
         if (collision.GetComponent<ObjectTrigger>() == null && collision.GetComponent<Potion>() == null)
+        {
+            _instanceFXPrefabEvent?.Invoke();
             Destroy(gameObject);
+        }
 
     }
 
@@ -60,5 +67,10 @@ public class Bullet : MonoBehaviour
     private void Health_OnDamage(int arg0)
     {
         throw new NotImplementedException();
+    }
+
+    public void InstanceFXPrefab()
+    {
+        Instantiate(_fxPrefab, gameObject.transform.position, Quaternion.identity, null);
     }
 }

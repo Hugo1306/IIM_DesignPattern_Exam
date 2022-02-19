@@ -49,6 +49,22 @@ MonoBehaviour:
   _rb: {fileID: 7551320715217455284}
   _speed: 0.3
   _collisionCooldown: 0.1
+  _fxPrefab: {fileID: 3149921707267211441, guid: 84d874f3a395c344f8c43663834c5550, type: 3}
+  _instanceFXPrefabEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6056709005347279180}
+        m_TargetAssemblyTypeName: Bullet, MyGame
+        m_MethodName: InstanceFXPrefab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &721766070828420108
 BoxCollider2D:
   m_ObjectHideFlags: 0
