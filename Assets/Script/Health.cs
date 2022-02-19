@@ -15,6 +15,7 @@ public class Health : MonoBehaviour, IHealth, IStates
     [SerializeField] int _maxHealth;
     [SerializeField] bool _shielded = false;
     [SerializeField] GameObject _shield;
+    [SerializeField] ControlShakeReference _controlShakeRef;
     [SerializeField] UnityEvent<int> _onDamage;
     [SerializeField] UnityEvent _onDeath;
 
@@ -50,7 +51,7 @@ public class Health : MonoBehaviour, IHealth, IStates
             var delta = CurrentHealth - tmp;
             _onDamage?.Invoke(delta);
 
-            //ChangeState();
+            ChangeState();
         }
         
 
@@ -133,5 +134,10 @@ public class Health : MonoBehaviour, IHealth, IStates
         {
             _onDeath?.Invoke();
         }
+    }
+
+    public void ScreenShake()
+    {
+        _controlShakeRef.Instance.LaunchScreenShake();
     }
 }
