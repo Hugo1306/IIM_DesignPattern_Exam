@@ -14,6 +14,7 @@ public class Health : MonoBehaviour, IHealth
     [SerializeField] int _startHealth;
     [SerializeField] int _maxHealth;
     [SerializeField] bool _shielded = false;
+    [SerializeField] GameObject _shield;
     [SerializeField] UnityEvent<int> _onDamage;
     [SerializeField] UnityEvent _onDeath;
 
@@ -125,7 +126,8 @@ public class Health : MonoBehaviour, IHealth
 
     public void Shield()
     {
-        IsShielded = !IsShielded;
+        IsShielded = !IsShielded; 
+        _shield.SetActive(IsShielded);
     }
 
 

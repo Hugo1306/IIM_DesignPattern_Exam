@@ -9,13 +9,9 @@ public class MyToggle : MonoBehaviour, ITouchable, IStates
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Color _onToggleOn;
     [SerializeField] Color _onToggleOff;
-    [SerializeField] UnityEvent _onStateChange;
     [SerializeField] Gate _gate;
 
     public bool IsActive { get; private set; }
-
-
-    public event UnityAction OnStateChange { add => _onStateChange.AddListener(value); remove => _onStateChange.RemoveListener(value); }
 
 
     public void Touch()
@@ -30,7 +26,6 @@ public class MyToggle : MonoBehaviour, ITouchable, IStates
 
     public void ChangeState()
     {
-        _onStateChange.Invoke();
         Touch();
         _gate.CheckToggles();
     }

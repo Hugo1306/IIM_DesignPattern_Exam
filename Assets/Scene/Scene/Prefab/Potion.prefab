@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionObj: {fileID: 93002997460992798}
-  heal: 2
+  healAmount: 2
   _playerRef: {fileID: 11400000, guid: 7d3f6df302821bc4291c74c1e016a367, type: 2}
 --- !u!1 &93002997460992798
 GameObject:
