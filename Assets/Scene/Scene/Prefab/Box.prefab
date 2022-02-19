@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1877c82ee7293904fbdc533c958b3762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _potionPrefab: {fileID: 93002997460992798, guid: abee3c457ceda414cb34d0a1e38c56a3, type: 3}
+  _instanceParent: {fileID: 11400000, guid: 0426a0e220ed4384794124b34422414a, type: 2}
 --- !u!61 &3562105877424766730
 BoxCollider2D:
   m_ObjectHideFlags: 0

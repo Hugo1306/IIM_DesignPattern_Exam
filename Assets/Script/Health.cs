@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Health : MonoBehaviour, IHealth
+public class Health : MonoBehaviour, IHealth, IStates
 {
     // Champs
     [SerializeField] int _startHealth;
@@ -50,10 +50,7 @@ public class Health : MonoBehaviour, IHealth
             var delta = CurrentHealth - tmp;
             _onDamage?.Invoke(delta);
 
-            if (CurrentHealth <= 0)
-            {
-                _onDeath?.Invoke();
-            }
+            //ChangeState();
         }
         
 
@@ -130,7 +127,11 @@ public class Health : MonoBehaviour, IHealth
         _shield.SetActive(IsShielded);
     }
 
-
-
-
+    public void ChangeState()
+    {
+        if (CurrentHealth <= 0)
+        {
+            _onDeath?.Invoke();
+        }
+    }
 }

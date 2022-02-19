@@ -36,25 +36,17 @@ public class Bullet : MonoBehaviour
     {
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
-        //if (collision.tag == "HitBox")
-        //{
-        //    collision.GetComponent<IHealth>()?.TakeDamage(Power);
-        //    Destroy(gameObject);
-        //}
-
-        //if (collision.GetComponent<IStates>() != null)
-        //{
-        //    collision.GetComponent<IStates>()?.ChangeState();
-        //    Destroy(gameObject);
-        //}
-
         collision.GetComponent<IHealth>()?.TakeDamage(Power);
         collision.GetComponent<IStates>()?.ChangeState();
 
-        if (collision.GetComponent<ObjectTrigger>() == null)
+        if (collision.GetComponent<IStates>() == null)
+            collision.GetComponent<ITouchable>()?.Touch();
+
+        if (collision.GetComponent<ObjectTrigger>() == null && collision.GetComponent<Potion>() == null)
             Destroy(gameObject);
 
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
